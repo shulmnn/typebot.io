@@ -66,6 +66,15 @@ const nextConfig = {
     outputFileTracingRoot: join(__dirname, "../../"),
     serverComponentsExternalPackages: ["isolated-vm"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.**.**",
+        port: "",
+      },
+    ],
+  },
   webpack: (config, { isServer }) => {
     if (isServer) return config;
 
