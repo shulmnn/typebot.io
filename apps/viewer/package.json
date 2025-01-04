@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.14.0",
     "@faire/mjml-react": "3.3.0",
-    "@mui/material": "^6.3.0",
+    "@mui/icons-material": "^6.3.1",
+    "@mui/material": "^6.3.1",
     "@mui/material-nextjs": "^6.3.0",
     "@paralleldrive/cuid2": "2.2.1",
     "@planetscale/database": "1.8.0",

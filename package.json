@@ -53,8 +53,5 @@
     "isolated-vm",
     "prisma",
     "sharp"
-  ],
-  "dependencies": {
-    "@mui/icons-material": "^6.3.0"
-  }
+  ]
 }
