@@ -23,9 +23,15 @@ export const ImageBubble = (props: Props) => {
     props.onTransitionEnd ? true : false,
   );
 
+  const playSound = () => {
+    const audio = new Audio("/sound.mp3");
+    audio.play();
+  };
+
   const onTypingEnd = () => {
     if (!isTyping()) return;
     setIsTyping(false);
+    playSound();
     setTimeout(() => {
       props.onTransitionEnd?.(ref);
     }, showAnimationDuration);
@@ -65,6 +71,10 @@ export const ImageBubble = (props: Props) => {
     />
   );
 
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+
   return (
     <div
       class={clsx(
@@ -103,6 +113,11 @@ export const ImageBubble = (props: Props) => {
             >
               {Image}
             </figure>
+          )}
+          {!isTyping() && (
+            <div>
+              <span class="hora">{`${hours}:${minutes}`}</span>
+            </div>
           )}
         </div>
       </div>

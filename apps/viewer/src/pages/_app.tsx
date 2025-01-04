@@ -1,5 +1,7 @@
 import type React from "react";
 import "../assets/styles.css";
+import { AppCacheProvider } from "@mui/material-nextjs/V14-pagesRouter";
+import { Poppins } from "next/font/google";
 
 type Props = {
   Component: React.ComponentType;
@@ -8,8 +10,21 @@ type Props = {
   };
 };
 
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+});
+
 export default function MyApp({ Component, pageProps }: Props): JSX.Element {
   const { ...componentProps } = pageProps;
 
-  return <Component {...componentProps} />;
+  return (
+    <AppCacheProvider>
+      <div className={poppins.variable}>
+        <Component {...componentProps} />
+      </div>
+    </AppCacheProvider>
+  );
 }

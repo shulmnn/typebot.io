@@ -341,20 +341,7 @@ export const ConversationContainer = (props: Props) => {
       class="flex flex-col overflow-y-auto w-full relative scrollable-container typebot-chat-view scroll-smooth gap-2"
     >
       <div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            backgroundColor: "#d5f4f0",
-            borderRadius: "10px",
-            padding: "10px",
-            width: "fit-content",
-            maxWidth: "450px",
-            margin: "3rem auto .5rem",
-          }}
-          class="info-container"
-        >
+        <div class="info-container">
           <div>
             <svg
               width="24px"

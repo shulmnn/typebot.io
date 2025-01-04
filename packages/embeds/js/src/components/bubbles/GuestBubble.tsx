@@ -112,6 +112,47 @@ const TextGuestBubble = (props: { answer: TextInputSubmitContent }) => {
             {props.answer.label ?? props.answer.value}
           </span>
         </Show>
+        <div>
+          <span class="hora2">{`${String(new Date().getHours()).padStart(
+            2,
+            "0",
+          )}:${String(new Date().getMinutes()).padStart(2, "0")}`}</span>
+          <svg
+            id="checkIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 38.626 24.684"
+            style="position: absolute;bottom: 2px;right: 5px;"
+            height="20"
+            width="18"
+          >
+            <g
+              id="Grupo_1"
+              data-name="Grupo 1"
+              transform="translate(-708.9 -601.383)"
+            >
+              <path
+                id="Caminho_6"
+                data-name="Caminho 6"
+                d="M728.035,623.468l1.382,1.482,17.929-20.334"
+                transform="translate(-1.937 -1.117)"
+                fill="none"
+                stroke="#29afdf"
+                stroke-linecap="round"
+                stroke-width="3"
+              ></path>
+              <path
+                id="Caminho_7"
+                data-name="Caminho 7"
+                d="M712.017,616.07l7.088,8.039,17.757-20.14"
+                transform="translate(-1 -0.469)"
+                fill="none"
+                stroke="#29afdf"
+                stroke-linecap="round"
+                stroke-width="3"
+              ></path>
+            </g>
+          </svg>
+        </div>
       </div>
       <Modal
         isOpen={clickedImageSrc() !== undefined}

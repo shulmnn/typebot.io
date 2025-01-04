@@ -23,6 +23,11 @@ export const AudioBubble = (props: Props) => {
     props.onTransitionEnd ? true : false,
   );
 
+  const playSound = () => {
+    const audio = new Audio("/sound.mp3");
+    audio.play();
+  };
+
   onMount(() => {
     typingTimeout = setTimeout(() => {
       if (isPlayed) return;
@@ -35,6 +40,10 @@ export const AudioBubble = (props: Props) => {
   onCleanup(() => {
     if (typingTimeout) clearTimeout(typingTimeout);
   });
+
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
 
   return (
     <div
@@ -73,6 +82,11 @@ export const AudioBubble = (props: Props) => {
             }}
             controls
           />
+          {!isTyping() && (
+            <div>
+              <span class="hora">{`${hours}:${minutes}`}</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

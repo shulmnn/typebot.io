@@ -25,9 +25,23 @@ export const TextBubble = (props: Props) => {
     props.onTransitionEnd ? true : false,
   );
 
+  const playSound = () => {
+    const audio = new Audio("/sound.mp3");
+
+    audio.play();
+  };
+
   const onTypingEnd = () => {
     if (!isTyping()) return;
     setIsTyping(false);
+    window.postMessage(
+      {
+        type: "typing-event",
+        value: false,
+      },
+      "*",
+    );
+    playSound();
     setTimeout(() => {
       props.onTransitionEnd?.(ref);
     }, showAnimationDuration);
@@ -35,6 +49,13 @@ export const TextBubble = (props: Props) => {
 
   onMount(() => {
     if (!isTyping) return;
+    window.postMessage(
+      {
+        type: "typing-event",
+        value: true,
+      },
+      "*",
+    );
     const plainText = props.content?.richText
       ? computePlainText(props.content.richText)
       : "";
@@ -51,6 +72,10 @@ export const TextBubble = (props: Props) => {
   onCleanup(() => {
     if (typingTimeout) clearTimeout(typingTimeout);
   });
+
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
 
   return (
     <div
@@ -85,6 +110,11 @@ export const TextBubble = (props: Props) => {
               {(element) => <PlateElement element={element} />}
             </For>
           </div>
+          {!isTyping() && (
+            <div>
+              <span class="hora">{`${hours}:${minutes}`}</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

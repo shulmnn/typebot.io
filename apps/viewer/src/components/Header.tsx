@@ -1,6 +1,31 @@
+"use client";
+
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
+  const [isTyping, setIsTyping] = useState(false);
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.source !== window) {
+        return;
+      }
+
+      if (event.data.type === "typing-event") {
+        setIsTyping(event.data.value);
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      // Cleanup the event listener
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+
   return (
     <div className="user-bar">
       <div className="back">
@@ -45,10 +70,12 @@ export const Header = () => {
             ></polygon>
           </svg>
         </span>
-        <span className="status">en linea</span>
+        <span className="status">
+          {isTyping ? "escribiendo..." : "en linea"}
+        </span>
       </div>
       <div className="actions more">
-        <i className="zmdi zmdi-more-vert"></i>
+        <MoreVertIcon />
       </div>
     </div>
   );
