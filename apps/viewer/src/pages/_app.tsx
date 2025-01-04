@@ -1,6 +1,5 @@
 import type React from "react";
 import "../assets/styles.css";
-import { AppCacheProvider } from "@mui/material-nextjs/V14-pagesRouter";
 import { Poppins } from "next/font/google";
 
 type Props = {
@@ -21,10 +20,8 @@ export default function MyApp({ Component, pageProps }: Props): JSX.Element {
   const { ...componentProps } = pageProps;
 
   return (
-    <AppCacheProvider>
-      <div className={poppins.variable}>
-        <Component {...componentProps} />
-      </div>
-    </AppCacheProvider>
+    <div className={poppins.variable}>
+      <Component {...componentProps} />
+    </div>
   );
 }
