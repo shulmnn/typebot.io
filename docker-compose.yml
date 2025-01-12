@@ -38,8 +38,6 @@ services:
       typebot-db:
         condition: service_healthy
     restart: always
-    ports:
-      - "3001:3000"
     env_file: .env
 
   nginx:
@@ -70,7 +68,7 @@ services:
   certbot-init:
     image: certbot/certbot
     volumes:
-      - ./certs:/etc/letsencrypt
+      - certs:/etc/letsencrypt
     entrypoint: "/bin/sh -c 'certbot certonly --standalone --agree-tos --no-eff-email --email shulmnn@gmail.com --domains chat.citasvirtualesenlinea.info && nginx -s reload'"
     depends_on:
       - nginx
