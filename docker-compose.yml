@@ -64,16 +64,16 @@ services:
     depends_on:
       - nginx
     environment:
-      - NGINX_HOST=chat.citasvirtualesenlinea.info
+      - NGINX_HOST=chat.citasvirtualesenlinea.info,bot.citasvirtualesenlinea.info
     restart: "no"
 
   certbot-init:
     image: certbot/certbot
     volumes:
       - ./certs:/etc/letsencrypt
-    entrypoint: "/bin/sh -c 'certbot certonly --standalone --agree-tos --no-eff-email --email shulmnn@gmail.com --domains chat.citasvirtualesenlinea.info && nginx -s reload'"
+    entrypoint: "/bin/sh -c 'certbot certonly --standalone --agree-tos --no-eff-email --email shulmnn@gmail.com --domains chat.citasvirtualesenlinea.info,bot.citasvirtualesenlinea.info && nginx -s reload'"
     depends_on:
       - nginx
     environment:
-      - NGINX_HOST=chat.citasvirtualesenlinea.info
+      - NGINX_HOST=chat.citasvirtualesenlinea.info,bot.citasvirtualesenlinea.info
     restart: "no"
